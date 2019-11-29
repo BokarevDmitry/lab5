@@ -22,17 +22,13 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-//import io.netty.handler.codec.http.HttpH;
 
-//import org.slf4j.impl.StaticLoggerBinder;
 
-import static org.asynchttpclient.Dsl.*;
-//import org.asynchttpclient.*;
+import org.asynchttpclient.Dsl.*;
 
-//import static org.asynchttpclient.Dsl.asyncHttpClient;
-
-//import static org.asynchttpclient.Dsl.asyncHttpClient;
 import io.netty.handler.codec.http.*;
+
+//import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 
 public class App extends AllDirectives {

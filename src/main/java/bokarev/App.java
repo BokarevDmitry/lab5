@@ -67,7 +67,7 @@ public class App extends AllDirectives {
                                             } catch (InterruptedException | ExecutionException e) {
                                                 e.printStackTrace();
                                             }
-                                            //return complete("fault");
+                                            return complete("fault");
 
                                             //return complete("Test started!");
                                         }

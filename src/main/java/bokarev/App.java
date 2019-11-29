@@ -46,9 +46,9 @@ public class App extends AllDirectives {
         );
 
         System.out.println("Server online at http://localhost:8080/");
-        AsyncHttpClient asyncHttpClient = asyncHttpClient();
-        asyncHttpClient.close();
 
+        //AsyncHttpClient asyncHttpClient = asyncHttpClient();
+        AsyncHttpClient client = Dsl.asyncHttpClient();
     }
 
 

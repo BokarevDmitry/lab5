@@ -37,7 +37,7 @@ import io.netty.handler.codec.http.*;
 
 public class App extends AllDirectives {
     public static void main(String[] args) throws Exception, InterruptedException, IOException {
-        ActorSystem system = ActorSystem.create("routes");
+        /*ActorSystem system = ActorSystem.create("routes");
         ActorRef routerActor = system.actorOf(bokarev.RouterActor.props(system), "Router-Actor");
 
         final Http http = Http.get(system);
@@ -49,13 +49,14 @@ public class App extends AllDirectives {
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
                 materializer
-        );
+        );*/
 
         System.out.println("Server online at http://localhost:8080/");
+        AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
     }
 
-    AsyncHttpClient asyncHttpClient = asyncHttpClient();
+
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
     private Route createRoute(ActorRef routerActor) {

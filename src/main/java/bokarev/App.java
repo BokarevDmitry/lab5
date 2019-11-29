@@ -59,15 +59,15 @@ public class App extends AllDirectives {
                 path("get", () ->
                         route(
                                 get(() -> {
-                                            /*AsyncHttpClient asyncHttpClient = asyncHttpClient();
+                                            AsyncHttpClient asyncHttpClient = asyncHttpClient();
                                             Future<Response> whenResponse = asyncHttpClient.prepareGet("http://rambler.ru").execute();
                                             try {
                                                 Response response = whenResponse.get();
                                                 return complete(response.getResponseBody());
                                             } catch (InterruptedException | ExecutionException e) {
                                                 e.printStackTrace();
-                                            }*/
-                                            return complete("fault");
+                                            }
+                                            //return complete("fault");
 
                                             //return complete("Test started!");
                                         }

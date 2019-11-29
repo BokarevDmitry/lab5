@@ -12,12 +12,26 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
-import akka.routing.RouterActor;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import scala.concurrent.Future;
+import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.Response;
+//import scala.concurrent.Future;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+//import io.netty.handler.codec.http.HttpH;
+
+//import org.slf4j.impl.StaticLoggerBinder;
+
+import static org.asynchttpclient.Dsl.*;
+//import org.asynchttpclient.*;
+
+//import static org.asynchttpclient.Dsl.asyncHttpClient;
+
+//import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 
 public class App extends AllDirectives {
@@ -37,17 +51,35 @@ public class App extends AllDirectives {
         );
 
         System.out.println("Server online at http://localhost:8080/");
+
     }
+
+    AsyncHttpClient asyncHttpClient = asyncHttpClient();
+    //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
     private Route createRoute(ActorRef routerActor) {
         return route(
                 path("get", () ->
                         route(
-                                get(() ->
+                                get(() -> {
+                                            /*AsyncHttpClient asyncHttpClient = asyncHttpClient();
+                                            Future<Response> whenResponse = asyncHttpClient.prepareGet("http://rambler.ru").execute();
+                                            try {
+                                                Response response = whenResponse.get();
+                                                return complete(response.getResponseBody());
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                e.printStackTrace();
+                                            }*/
+                                            return complete("fault");
+
+                                            //return complete("Test started!");
+                                        }
+                                        /*
                                         parameter("packageId", packageId -> {
                                             Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(packageId)), 5000);
                                             return completeOKWithFuture(future, Jackson.marshaller());
                                         })
+                                        */
                                 ))),
                 path("post", () ->
                         route(

@@ -24,11 +24,11 @@ import java.util.concurrent.Future;
 
 
 
-import org.asynchttpclient.Dsl.*;
+import static org.asynchttpclient.Dsl.*;
 
 import io.netty.handler.codec.http.*;
 
-import static org.asynchttpclient.Dsl.asyncHttpClient;
+//import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 //import static org.asynchttpclient.Dsl.asyncHttpClient;
 

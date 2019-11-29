@@ -14,7 +14,7 @@ import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.*;
 import org.asynchttpclient.Response;
 //import scala.concurrent.Future;
 import java.io.IOException;
@@ -28,9 +28,6 @@ import static org.asynchttpclient.Dsl.*;
 
 import io.netty.handler.codec.http.*;
 
-//import static org.asynchttpclient.Dsl.asyncHttpClient;
-
-//import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 
 public class App extends AllDirectives {

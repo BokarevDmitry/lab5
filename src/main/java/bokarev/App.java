@@ -32,7 +32,7 @@ import static org.asynchttpclient.Dsl.*;
 //import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 //import static org.asynchttpclient.Dsl.asyncHttpClient;
-import io.netty.handler.codec.*;
+import io.netty.handler.codec.http.*;
 
 
 public class App extends AllDirectives {

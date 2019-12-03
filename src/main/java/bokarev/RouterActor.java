@@ -46,8 +46,7 @@ public class RouterActor extends AbstractActor {
                     }
                 })*/
                 .match(UrlWithCount.class, msg -> {
-                    Flow.of(HttpRequest.class)
-                            .map
+                    Flow<UrlWithCount, > Flow.of(HttpRequest.class).map
 
                     //storageActor.tell(msg, getSelf());
                     //Patterns.ask(storageActor)

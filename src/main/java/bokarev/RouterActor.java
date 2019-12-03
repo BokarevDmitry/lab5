@@ -45,7 +45,7 @@ public class RouterActor extends AbstractActor {
                 .match(UrlWithCount.class, msg -> {
                     Flow<UrlWithCount, HttpResponse, NotUsed> flow = Flow.of(UrlWithCount.class)
                             .map(req -> new Tuple2<String, Integer>(req.getUrl(), req.getCount()))
-                            .mapAsync();
+                            .mapAsync()
                     //storageActor.tell(msg, getSelf());
                     //Patterns.ask(storageActor)
                 })

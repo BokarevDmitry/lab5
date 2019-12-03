@@ -12,6 +12,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Source;
+import javafx.util.Pair;
 import scala.Tuple2;
 
 
@@ -44,10 +45,11 @@ public class RouterActor extends AbstractActor {
 
                 .match(UrlWithCount.class, msg -> {
                     Flow<UrlWithCount, HttpResponse, NotUsed> flow = Flow.of(UrlWithCount.class)
-                            .map(req -> new Tuple2<String, Integer>(req.getUrl(), req.getCount()))
+                            .map(req -> new Pair<String, Integer>(req.getUrl(), req.getCount()))
                             .mapAsync()
                     //storageActor.tell(msg, getSelf());
                     //Patterns.ask(storageActor)
+                    
                 })
                 .match(NoSuchTest.class, msg -> {
                     ActorRef testPasserActor = getContext().actorOf(TestPasserActor.props(), "TestPasser-Actor");

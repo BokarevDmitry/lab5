@@ -12,6 +12,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Source;
+import scala.Tuple2;
 
 
 public class RouterActor extends AbstractActor {
@@ -40,17 +41,11 @@ public class RouterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                /*.match(TestPackage.class, test -> {
-                    log.info("REQUEST: route new test package");
-                    int count = test.testsLists.size();
-                    for (int i=0; i<count; i++) {
-                        ActorRef testPasserActor = getContext().actorOf(TestPasserActor.props(), "TestPasser-Actor-"+i);
-                        testPasserActor.tell(new TestForImpl(test, i), storageActor);
-                    }
-                })*/
+
                 .match(UrlWithCount.class, msg -> {
                     Flow<UrlWithCount, HttpResponse, NotUsed> flow = Flow.of(UrlWithCount.class)
-                            .map()
+                            .map(req -> new Tuple2<String, Integer>(req.getUrl(), req.getCount()))
+                            .mapAsync();
                     //storageActor.tell(msg, getSelf());
                     //Patterns.ask(storageActor)
                 })

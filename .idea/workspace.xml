@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9f1810e6-0591-4f38-ba35-3ae6f32a2c03" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/App.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/App.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/TestGetter.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/TestGetter.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/TestGetter.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/UrlWithCount.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +18,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state relative-caret-position="430">
+              <caret line="67" column="27" lean-forward="false" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -27,12 +27,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestGetter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/TestGetter.java">
+      <file leaf-file-name="UrlWithCount.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/UrlWithCount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="270">
+              <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+              <folding>
+                <element signature="e#206#207#0" expanded="true" />
+                <element signature="e#232#233#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,8 +97,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/bokarev/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/TestGetter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bokarev/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bokarev/UrlWithCount.java" />
       </list>
     </option>
   </component>
@@ -655,19 +659,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="430">
+          <caret line="67" column="27" lean-forward="false" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/TestGetter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/UrlWithCount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="270">
+          <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding>
+            <element signature="e#206#207#0" expanded="true" />
+            <element signature="e#232#233#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

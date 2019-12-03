@@ -1,13 +1,17 @@
 package bokarev;
 
-public class Request {
-    int packageId;
+public class UrlWithCount {
+    String url;
+    int count;
 
-    TestGetter(int packageId) {
-        this.packageId = packageId;
+    UrlWithCount(String url, int count) {
+        this.url = url;
+        this.count = count;
     }
 
-    public int getPackageId() {
-        return packageId;
+    public String getUrl() {
+        return url;
     }
+
+    public int getCount() { return count;}
 }

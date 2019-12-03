@@ -59,7 +59,7 @@ public class App extends AllDirectives {
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
     private Route createRoute(ActorRef routerActor) {
-        return parameter("url", url ->
+        return parameter("testUrl", url ->
                 parameter("count", count ->
                         complete("url = " + url + "count = " + count)
                         //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);

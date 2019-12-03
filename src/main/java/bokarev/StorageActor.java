@@ -42,12 +42,13 @@ public class StorageActor extends AbstractActor {
                         this.testResults.put(test.getPackageId(), testPackage);
                     }
                 })
-                .match(TestGetter.class, r -> {
-                    log.info("REQUEST: tests for package - " + r.getPackageId());
-                    if (this.testResults.containsKey(r.packageId)) {
-                        getSender().tell(this.testResults.get(r.getPackageId()), getSelf());
+
+                .match(UrlWithCount.class, r -> {
+                    log.info("REQUEST: tests for package - " + r.getUrl());
+                    if (this.testResults.containsKey(r.getUrl())) {
+                        getSender().tell(this.testResults.get(r.getUrl()), getSelf());
                     } else {
-                        getSender().tell("RESPONSE: no tests with this packageId", ActorRef.noSender());
+                        getSender().tell("RESPONSE: no tests with this url", ActorRef.noSender());
                     }
                 })
 

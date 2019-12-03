@@ -42,7 +42,7 @@ public class RouterActor extends AbstractActor {
                         testPasserActor.tell(new TestForImpl(test, i), storageActor);
                     }
                 })
-                .match(TestGetter.class, msg -> storageActor.tell(msg, getSender()))
+                .match(UrlWithCount.class, msg -> storageActor.tell(msg, getSender()))
                 .build();
     }
 }

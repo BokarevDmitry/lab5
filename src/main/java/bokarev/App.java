@@ -51,21 +51,20 @@ public class App extends AllDirectives {
 
         System.out.println("Server online at http://localhost:8080/");
 
-        AsyncHttpClient asyncHttpClient = asyncHttpClient();
-        AsyncHttpClient client = Dsl.asyncHttpClient();
+        //AsyncHttpClient asyncHttpClient = asyncHttpClient();
+        //AsyncHttpClient client = Dsl.asyncHttpClient();
     }
 
 
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
     private Route createRoute(ActorRef routerActor) {
-        return parameter("testUrl", url -> {
+        return parameter("testUrl", testUrl -> {
                     parameter("count", count -> {
-
-                        Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
+                        Future<Object> future = Patterns.ask(routerActor, new UrlWithCount(testUrl, Integer.parseInt(count)), 5000);
                         return completeOKWithFuture(future, Jackson.marshaller());
                     });
-                    return complete("url = " + url);
+                    return complete("fault");
                 });
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();

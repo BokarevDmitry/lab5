@@ -1,5 +1,6 @@
 package bokarev;
 
+import akka.NotUsed;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -7,6 +8,7 @@ import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Source;
@@ -47,7 +49,8 @@ public class RouterActor extends AbstractActor {
                     }
                 })*/
                 .match(UrlWithCount.class, msg -> {
-                    Flow<UrlWithCount, > Flow.of(HttpRequest.class).map
+                    Flow<UrlWithCount, HttpResponse, NotUsed> flow = Flow.of(UrlWithCount.class)
+                            .map()
                     //storageActor.tell(msg, getSelf());
                     //Patterns.ask(storageActor)
                 })

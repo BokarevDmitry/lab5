@@ -34,15 +34,20 @@ public class RouterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(TestPackage.class, test -> {
+                /*.match(TestPackage.class, test -> {
                     log.info("REQUEST: route new test package");
                     int count = test.testsLists.size();
                     for (int i=0; i<count; i++) {
                         ActorRef testPasserActor = getContext().actorOf(TestPasserActor.props(), "TestPasser-Actor-"+i);
                         testPasserActor.tell(new TestForImpl(test, i), storageActor);
                     }
+                })*/
+                .match(UrlWithCount.class, msg -> storageActor.tell(msg, getSelf()))
+                .match(NoSuchTest.class, msg -> {
+                    ActorRef testPasserActor = getContext().actorOf(TestPasserActor.props(), "TestPasser-Actor");
+                    testPasserActor.tell(msg, getSender());
                 })
-                .match(UrlWithCount.class, msg -> storageActor.tell(msg, getSender()))
+
                 .build();
     }
 }

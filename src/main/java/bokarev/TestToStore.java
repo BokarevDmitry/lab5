@@ -1,39 +1,14 @@
 package bokarev;
 
-public class TestForImpl {
-    final Integer packageId;
-    final String jsScript, functionName;
-    OneTest oneTest;
+public class TestToStore {
+    private final String url;
+    private final double time;
 
-    TestForImpl(TestPackage test, int indexOfTest) {
-        this.packageId = test.packageId;
-        this.jsScript = test.jsScript;
-        this.functionName = test.functionName;
-
-        this.oneTest = new OneTest(
-                test.testsLists.get(indexOfTest).testName,
-                test.testsLists.get(indexOfTest).expectedResult,
-                test.testsLists.get(indexOfTest).params,
-                null);
+    public TestToStore(String url, double time) {
+        this.url = url;
+        this.time = time;
     }
 
-    void setResult (Boolean result){
-        this.oneTest.result = result;
-    }
-
-    public Integer getPackageId() {
-        return packageId;
-    }
-
-    public String getJsScript() {
-        return jsScript;
-    }
-
-    public String getFunctionName() {
-        return functionName;
-    }
-
-    public OneTest getOneTest() {
-        return oneTest;
-    }
+    public String getUrl() { return url; }
+    public double getTime() { return time; }
 }

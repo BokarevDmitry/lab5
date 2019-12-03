@@ -10,7 +10,7 @@ import java.util.*;
 public class StorageActor extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    private Map<Integer, TestPackage> testResults;
+    private Map<String, Double> testResults;
 
     public StorageActor() {
         this.testResults = new HashMap<>();
@@ -33,14 +33,9 @@ public class StorageActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(TestForImpl.class, test -> {
-                    log.info("REQUEST: store test results of package - " + test.getPackageId());
-                    if (this.testResults.containsKey(test.getPackageId())) {
-                        this.testResults.get(test.getPackageId()).testsLists.add(test.getOneTest());
-                    } else {
-                        TestPackage testPackage = new TestPackage(test);
-                        this.testResults.put(test.getPackageId(), testPackage);
-                    }
+                .match(TestToStore.class, test -> {
+                        log.info("REQUEST: store test results of  - " + test.getUrl());
+                        this.testResults.put(test.getUrl(), test.getTime());
                 })
 
                 .match(UrlWithCount.class, r -> {
@@ -48,7 +43,7 @@ public class StorageActor extends AbstractActor {
                     if (this.testResults.containsKey(r.getUrl())) {
                         getSender().tell(this.testResults.get(r.getUrl()), getSelf());
                     } else {
-                        getSender().tell("RESPONSE: no tests with this url", ActorRef.noSender());
+                        getSender().tell("No such test", ActorRef.noSender());
                     }
                 })
 

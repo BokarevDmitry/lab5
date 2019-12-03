@@ -31,21 +31,11 @@ public class TestPasserActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(TestForImpl.class, test -> {
-                    Boolean res = Double.parseDouble(invoke(test)) == test.getOneTest().getExpectedResult();
-                    test.setResult(res);
-                    log.info("TEST IS DONE, RESULT: " + res);
-                    getSender().tell(test, ActorRef.noSender());
-                    getContext().stop(getSelf());
+                .match(NoSuchTest.class, test -> {
+                    log.info("TEST IS DONE, RESULT: ");
+                    getSender().tell(new TestToStore(test.getUrl(), 2.0), ActorRef.noSender());
                 })
 
                 .build();
-    }
-
-    private String invoke(TestForImpl r) throws ScriptException, NoSuchMethodException {
-        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval(r.getJsScript());
-        Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(r.getFunctionName(), r.getOneTest().getParams()).toString();
     }
 }

@@ -83,12 +83,6 @@
             <version>2.10.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>1.6.2</version>
-            <scope>test</scope>
-        </dependency>
 
     </dependencies>
 </project>

@@ -11,6 +11,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.AllDirectives;
 import akka.http.javadsl.server.Route;
+import akka.http.javadsl.unmarshalling.StringUnmarshallers;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -61,13 +62,13 @@ public class App extends AllDirectives {
         return route(
                 path("get", () ->
                         route(
-                                get(        () -> parameter("url", url -> {
-                                            parameter("count", count ->
+                                get(() -> parameter("url", url ->
+                                            parameter(StringUnmarshallers.INTEGER,"count", count ->
                                                 //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
                                                 //return completeOKWithFuture(future, Jackson.marshaller());
                                                 complete("url = "+ url + "count = " + count);
-                                            )
-                                        })
+                                            )))
+
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();
                                             Future<Response> whenResponse = asyncHttpClient.prepareGet("http://www.rambler.com").execute();
@@ -87,6 +88,6 @@ public class App extends AllDirectives {
                                             return completeOKWithFuture(future, Jackson.marshaller());
                                         })
                                         */
-                                ))));
+                                )));
     }
 }

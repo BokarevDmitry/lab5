@@ -61,7 +61,7 @@ public class App extends AllDirectives {
     private Route createRoute(ActorRef routerActor) {
         return parameter("testUrl", url ->
                 parameter("count", count ->
-                        complete("url = " + url + "count = " + count)
+                        complete("url = " + url + " count = " + count)
                         //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
                         //return completeOKWithFuture(future, Jackson.marshaller());
 

@@ -58,8 +58,9 @@ public class App extends AllDirectives {
         return route(
                 path("get", () ->
                         route(
-                                get(() -> parameter("count", count -> {
-                                            Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(packageId)), 5000);
+                                get(
+                                        () -> parameter("count", count -> {
+                                            Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
                                             return completeOKWithFuture(future, Jackson.marshaller());
                                         })
                                         /*{

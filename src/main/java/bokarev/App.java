@@ -20,6 +20,9 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 //import java.util.concurrent.Future;
 
+import static akka.http.javadsl.server.Directives.complete;
+import static akka.http.javadsl.server.Directives.parameter;
+
 
 import org.asynchttpclient.*;
 import static org.asynchttpclient.Dsl.*;
@@ -58,10 +61,12 @@ public class App extends AllDirectives {
         return route(
                 path("get", () ->
                         route(
-                                get(    parameterList("url", url -> )
-                                        () -> parameter("count", count -> {
-                                            Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
-                                            return completeOKWithFuture(future, Jackson.marshaller());
+                                get(        () -> parameter("url", url -> {
+                                            parameter("count", count ->
+                                                //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
+                                                //return completeOKWithFuture(future, Jackson.marshaller());
+                                                complete("url = "+ url + "count = " + count);
+                                            )
                                         })
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();

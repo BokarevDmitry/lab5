@@ -59,14 +59,14 @@ public class App extends AllDirectives {
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
     private Route createRoute(ActorRef routerActor) {
-        final Route route = parameter("url", url ->
-                parameter(StringUnmarshallers.INTEGER,"count", count ->
-                        complete("url = "+ url + "count = " + count);
-                                                //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
-                                                //return completeOKWithFuture(future, Jackson.marshaller());
+        return parameter("url", url ->
+                parameter("count", count ->
+                        complete("url = " + url + "count = " + count)
+                        //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
+                        //return completeOKWithFuture(future, Jackson.marshaller());
 
-                )))
-
+                )
+        );
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();
                                             Future<Response> whenResponse = asyncHttpClient.prepareGet("http://www.rambler.com").execute();
@@ -86,6 +86,6 @@ public class App extends AllDirectives {
                                             return completeOKWithFuture(future, Jackson.marshaller());
                                         })
                                         */
-                                )));
+                                //)));
     }
 }

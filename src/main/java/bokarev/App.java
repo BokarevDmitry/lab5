@@ -15,7 +15,7 @@ import akka.http.javadsl.unmarshalling.StringUnmarshallers;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import scala.concurrent.Future;
+//import scala.concurrent.Future;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
@@ -30,7 +30,7 @@ import static org.asynchttpclient.Dsl.*;
 
 
 import io.netty.handler.codec.http.HttpContentDecoder;
-
+import scala.concurrent.Future;
 
 
 public class App extends AllDirectives {
@@ -59,14 +59,14 @@ public class App extends AllDirectives {
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
     private Route createRoute(ActorRef routerActor) {
-        return parameter("testUrl", url ->
-                parameter("count", count ->
-                        complete("url = " + url + " count = " + count)
-                        //Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
-                        //return completeOKWithFuture(future, Jackson.marshaller());
+        return parameter("testUrl", url -> {
+                    parameter("count", count -> {
 
-                )
-        );
+                        Future<Object> future = Patterns.ask(routerActor, new TestGetter(Integer.parseInt(count)), 5000);
+                        return completeOKWithFuture(future, Jackson.marshaller());
+                    });
+                    return complete("url = " + url);
+                });
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();
                                             Future<Response> whenResponse = asyncHttpClient.prepareGet("http://www.rambler.com").execute();

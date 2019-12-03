@@ -1,6 +1,6 @@
 package bokarev;
 
-public class TestGetter {
+public class Request {
     int packageId;
 
     TestGetter(int packageId) {

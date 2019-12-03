@@ -6,6 +6,9 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import akka.http.javadsl.model.HttpRequest;
+import akka.pattern.Patterns;
+import akka.stream.javadsl.Flow;
 
 
 public class RouterActor extends AbstractActor {
@@ -42,7 +45,13 @@ public class RouterActor extends AbstractActor {
                         testPasserActor.tell(new TestForImpl(test, i), storageActor);
                     }
                 })*/
-                .match(UrlWithCount.class, msg -> storageActor.tell(msg, getSelf()))
+                .match(UrlWithCount.class, msg -> {
+                    Flow.of(HttpRequest.class)
+                            .map
+
+                    //storageActor.tell(msg, getSelf());
+                    //Patterns.ask(storageActor)
+                })
                 .match(NoSuchTest.class, msg -> {
                     ActorRef testPasserActor = getContext().actorOf(TestPasserActor.props(), "TestPasser-Actor");
                     testPasserActor.tell(msg, getSender());

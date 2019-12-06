@@ -6,31 +6,18 @@ import akka.actor.ActorSystem;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
-import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.AllDirectives;
-import akka.http.javadsl.server.Route;
-import akka.http.javadsl.unmarshalling.StringUnmarshallers;
-import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 //import scala.concurrent.Future;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutionException;
 //import java.util.concurrent.Future;
 
 import static akka.http.javadsl.server.Directives.complete;
 import static akka.http.javadsl.server.Directives.parameter;
-
-
-import org.asynchttpclient.*;
-import static org.asynchttpclient.Dsl.*;
-
-
-import io.netty.handler.codec.http.HttpContentDecoder;
-import scala.concurrent.Future;
 
 
 public class App extends AllDirectives {
@@ -42,7 +29,7 @@ public class App extends AllDirectives {
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         App instance = new App();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute(routerActor).flow(system, materializer);
+                instance.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
@@ -58,14 +45,14 @@ public class App extends AllDirectives {
 
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
-    private Route createRoute(ActorRef routerActor) {
-        return parameter("testUrl", testUrl -> {
-                    parameter("count", count -> {
-                        Future<Object> future = Patterns.ask(routerActor, new UrlWithCount(testUrl, Integer.parseInt(count)), 5000);
-                        return completeOKWithFuture(future, Jackson.marshaller());
-                    });
-                    return complete("fault");
-                });
+    private Flow<HttpRequest, HttpRequest, NotUsed> createRoute() {
+        return Flow.of(HttpRequest.class)
+                .map()
+
+    }
+
+    private Url
+
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();
                                             Future<Response> whenResponse = asyncHttpClient.prepareGet("http://www.rambler.com").execute();

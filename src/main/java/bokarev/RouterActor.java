@@ -58,7 +58,11 @@ public class RouterActor {
 
     public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
         return Patterns.ask(storageActor, test, Duration.ofMillis(5000))
-                .thenApply(t -> (TestWithResult)t)
+                .thenApply(t -> {
+                    System.out.println("TEGEHERE");
+                    //(TestWithResult)t
+                    return new TestWithResult(t);
+                })
                 .thenCompose(res -> {
                     System.out.println("WAGANFDOSIFJOIFJEWFOIEFOIEJWOFJEWOFEWFEWFEWFEFEWF");
                     Optional<TestWithResult> r = res.getOptResult();

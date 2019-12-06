@@ -7,9 +7,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.HttpResponse;
-import akka.http.javadsl.model.Query;
+import akka.http.javadsl.model.*;
 //import akka.pattern.Patterns;
 import akka.pattern.Patterns;
 import akka.pattern.Patterns$;
@@ -18,6 +16,9 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
+import akka.util.ByteString;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.asynchttpclient.AsyncHttpClient;
 
 import java.time.Duration;
@@ -82,7 +83,9 @@ public class RouterActor extends AbstractActor {
 
     Flow<HttpRequest, HttpResponse, NotUsed> createRoute() {
         return Flow.of(HttpRequest.class)
-                .map(this::parseReq);
+                .map(this::parseReq)
+                .mapAsync(5, this::checkTestInStorage)
+                .map(this::makeResponse);
 
     }
 
@@ -118,8 +121,19 @@ public class RouterActor extends AbstractActor {
                 })
                 .toMat(Sink.fold(0L,Long::sum), Keep.right());
         return Source.from(Collections.singleton(test))
-                .
+                .toMat(testSink, Keep.right())
+                .run(actorMaterializer)
+                .thenApply(m -> new TestWithResult(test, m/test.getCount()));
 
+    }
+
+    public HttpResponse makeResponse (TestWithResult testResult) throws JsonProcessingException {
+        storageActor.tell(testResult, ActorRef.noSender());
+        return HttpResponse.create()
+                .withStatus(200)
+                .withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(
+                        new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(testResult)
+                ));
     }
 
 

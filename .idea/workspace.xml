@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f1810e6-0591-4f38-ba35-3ae6f32a2c03" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/TestPasserActor.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/TestPasserActor.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/RouterActor.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/RouterActor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +39,8 @@
       <file leaf-file-name="RouterActor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/RouterActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="87" column="41" lean-forward="false" selection-start-line="87" selection-start-column="41" selection-end-line="87" selection-end-column="41" />
+            <state relative-caret-position="422">
+              <caret line="100" column="27" lean-forward="false" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,8 +117,8 @@
         <option value="$PROJECT_DIR$/src/main/java/bokarev/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/TestWithResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/StorageActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bokarev/RouterActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/TestPasserActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bokarev/RouterActor.java" />
       </list>
     </option>
   </component>
@@ -762,8 +762,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/RouterActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="87" column="41" lean-forward="false" selection-start-line="87" selection-start-column="41" selection-end-line="87" selection-end-column="41" />
+        <state relative-caret-position="422">
+          <caret line="100" column="27" lean-forward="false" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -8,7 +8,7 @@ import akka.event.LoggingAdapter;
 import java.util.*;
 
 public class StorageActor extends AbstractActor {
-    private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
+    //private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     private Map<UrlWithCount, Long> testResults;
 
@@ -20,7 +20,7 @@ public class StorageActor extends AbstractActor {
         return Props.create(StorageActor.class);
     }
 
-    @Override
+    /*@Override
     public void preStart() {
         log.info("Starting StorageActor {}", this);
     }
@@ -28,18 +28,18 @@ public class StorageActor extends AbstractActor {
     @Override
     public void postStop() {
         log.info("Stopping StorageActor {}", this);
-    }
+    }*/
 
     @Override
     public Receive createReceive() {
         return receiveBuilder()
                 .match(TestWithResult.class, test -> {
-                        log.info("REQUEST: store test results of  - " + test.getUrl());
+                       // log.info("REQUEST: store test results of  - " + test.getUrl());
                         testResults.put(test.getUrl(), test.getResult());
                 })
 
                 .match(UrlWithCount.class, r -> {
-                    log.info("REQUEST: tests for package - " + r.getUrl());
+                    //log.info("REQUEST: tests for package - " + r.getUrl());
                     getSender().tell(new TestWithResult(r, testResults.get(r)), ActorRef.noSender());
                 })
 

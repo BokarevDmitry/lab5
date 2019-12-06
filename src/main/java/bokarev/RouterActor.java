@@ -21,12 +21,14 @@ import java.util.concurrent.CompletionStage;
 public class RouterActor extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    private ActorRef storageActor;
+    ActorMaterializer actorMaterializer;
+    AsyncHttpClient asyncHttpClient;
+    ActorRef storageActor;
 
     public RouterActor(ActorSystem system, ActorMaterializer materializer, AsyncHttpClient asyncHttpClient) {
-        this.s
-
-        storageActor = system.actorOf (StorageActor.props(), "Storage-Actor");
+        this.actorMaterializer = materializer;
+        this.asyncHttpClient = asyncHttpClient;
+        this.storageActor = system.actorOf (StorageActor.props(), "Storage-Actor");
     }
 
     public static Props props(ActorSystem system) {

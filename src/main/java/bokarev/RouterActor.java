@@ -61,7 +61,7 @@ public class RouterActor {
                 .thenApply(t -> {
                     System.out.println("TEGEHERE");
                     //(TestWithResult)t
-                    return new TestWithResult(t);
+                    return (TestWithResult)t;
                 })
                 .thenCompose(res -> {
                     System.out.println("WAGANFDOSIFJOIFJEWFOIEFOIEJWOFJEWOFEWFEWFEWFEFEWF");

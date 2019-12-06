@@ -61,6 +61,7 @@ public class RouterActor {
                 .thenApply(t -> (TestWithResult)t)
                 .thenCompose(res -> {
                     Optional<TestWithResult> r = res.getOptResult();
+                    System.out.println("-----------------\n r ="+ r);
                     if (r.isPresent()) {
                         return CompletableFuture.completedFuture(r.get());
                     } else {

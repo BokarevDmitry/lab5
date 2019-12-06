@@ -98,8 +98,9 @@ public class RouterActor extends AbstractActor {
 
     public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
         return Patterns.ask(storageActor, test, Duration.ofMillis(5000))
+                .thenApply(t -> (TestWithResult)t)
                 .thenCompose(res -> {
-                    Optional<TestWithResult> r = res.();
+                    Optional<TestWithResult> r = res.getOptResult();
                     if (r.isPresent()) {
                         return CompletableFuture.completedFuture(r.get());
                     } else {

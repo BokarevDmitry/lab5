@@ -15,10 +15,15 @@ import akka.pattern.Patterns;
 import akka.pattern.Patterns$;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Sink;
 import org.asynchttpclient.AsyncHttpClient;
 
+import java.time.Duration;
+import java.util.Collections;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.regex.Pattern;
 
 
 public class RouterActor extends AbstractActor {
@@ -86,8 +91,23 @@ public class RouterActor extends AbstractActor {
     }
 
     public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
-        return Patterns.ask(storageActor, test, 5000)
-                .fallbackTo()
+        return Patterns.ask(storageActor, test, Duration.ofMillis(5000))
+                .thenCompose(res -> {
+                    Optional<TestWithResult> r = res.get();
+                    if (r.isPresent()) {
+                        return CompletableFuture.completedFuture(r.get());
+                    } else {
+                        return runNewTest(test);
+                    }
+                });
+    }
+
+    public CompletionStage<TestWithResult> runNewTest(UrlWithCount test) {
+        Sink<UrlWithCount, CompletionStage<Long>> testSink = Flow.of(UrlWithCount.class)
+                .mapConcat(r -> Collections.nCopies(r.getCount(), r.getUrl()))
+                .mapAsync(5, r-> {
+                    Ins
+                })
     }
 
 

@@ -86,8 +86,8 @@ public class RouterActor extends AbstractActor {
     }
 
     public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
-        return Patterns.ask(storageActor, test, 5000);
-        Patterns.ask
+        return Patterns.ask(storageActor, test, 5000)
+                .fallbackTo()
     }
 
 

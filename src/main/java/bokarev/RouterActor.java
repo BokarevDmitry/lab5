@@ -10,6 +10,7 @@ import akka.event.LoggingAdapter;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import org.asynchttpclient.AsyncHttpClient;
@@ -69,7 +70,7 @@ public class RouterActor extends AbstractActor {
 
 
 
-    private Flow<HttpRequest, HttpResponse, NotUsed> createRoute() {
+    Flow<HttpRequest, HttpResponse, NotUsed> createRoute() {
         return Flow.of(HttpRequest.class)
                 .map(this::parseReq);
 
@@ -83,7 +84,7 @@ public class RouterActor extends AbstractActor {
     }
 
     public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
-        return Patter
+        return Patterns.ask()
     }
 
 

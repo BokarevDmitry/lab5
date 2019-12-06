@@ -10,6 +10,7 @@ import akka.event.LoggingAdapter;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
+//import akka.pattern.Patterns;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -84,7 +85,8 @@ public class RouterActor extends AbstractActor {
     }
 
     public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
-        return Patterns.ask()
+        return Patterns.ask(storageActor, test, 5000)
+                .
     }
 
 

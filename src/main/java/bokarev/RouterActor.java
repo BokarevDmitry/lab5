@@ -10,7 +10,9 @@ import akka.event.LoggingAdapter;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
+import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import org.asynchttpclient.AsyncHttpClient;
 
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
@@ -21,8 +23,9 @@ public class RouterActor extends AbstractActor {
 
     private ActorRef storageActor;
 
-    public RouterActor(ActorSystem system) {
-        
+    public RouterActor(ActorSystem system, ActorMaterializer materializer, AsyncHttpClient asyncHttpClient) {
+        this.s
+
         storageActor = system.actorOf (StorageActor.props(), "Storage-Actor");
     }
 

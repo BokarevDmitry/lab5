@@ -15,10 +15,13 @@ import akka.pattern.Patterns;
 import akka.pattern.Patterns$;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
+import akka.stream.javadsl.Source;
 import org.asynchttpclient.AsyncHttpClient;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -106,8 +109,17 @@ public class RouterActor extends AbstractActor {
         Sink<UrlWithCount, CompletionStage<Long>> testSink = Flow.of(UrlWithCount.class)
                 .mapConcat(r -> Collections.nCopies(r.getCount(), r.getUrl()))
                 .mapAsync(5, r-> {
-                    Ins
+                    Instant startTime = Instant.now();
+                    return asyncHttpClient.prepareGet(r).execute()
+                            .toCompletableFuture()
+                            .thenCompose(p -> CompletableFuture.completedFuture(
+                                    Duration.between(startTime, Instant.now()).getSeconds()
+                            ));
                 })
+                .toMat(Sink.fold(0L,Long::sum), Keep.right());
+        return Source.from(Collections.singleton(test))
+                .
+
     }
 
 

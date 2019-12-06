@@ -39,8 +39,8 @@ public class StorageActor extends AbstractActor {
 
                 .match(UrlWithCount.class, r -> {
                     log.info("REQUEST: tests for package - " + r.getUrl() + " " + r.getCount());
-                    log.info(Integer.toString(testResults.size()));
-                    //getSender().tell(new TestWithResult(r, testResults.get(r)), ActorRef.noSender());
+                   // log.info(Integer.toString(testResults.size()));
+                    getSender().tell(new TestWithResult(r, testResults.get(r)), ActorRef.noSender());
                 })
 
                 .build();

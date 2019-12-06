@@ -47,12 +47,12 @@ public class RouterActor extends AbstractActor {
         return receiveBuilder()
 
                 .match(UrlWithCount.class, msg -> {
-                    Flow<UrlWithCount, HttpResponse, NotUsed> flow = Flow.of(UrlWithCount.class)
-                            .map(req -> new Pair<String, Integer>(req.getUrl(), req.getCount()))
-                            .mapAsync()
+                    //Flow<UrlWithCount, HttpResponse, NotUsed> flow = Flow.of(UrlWithCount.class)
+                            //.map(req -> new Pair<String, Integer>(req.getUrl(), req.getCount()))
+                            //.mapAsync()
                     //storageActor.tell(msg, getSelf());
                     //Patterns.ask(storageActor)
-                    Sink<UrlWithCount, CompletionStage<Long>> testSink = Sink
+                    //Sink<UrlWithCount, CompletionStage<Long>> testSink = Sink
 
                 })
                 .match(NoSuchTest.class, msg -> {

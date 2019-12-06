@@ -10,12 +10,14 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
 import akka.http.javadsl.server.AllDirectives;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 //import scala.concurrent.Future;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
+import java.util.regex.Pattern;
 //import java.util.concurrent.Future;
 
 import static akka.http.javadsl.server.Directives.complete;
@@ -47,20 +49,7 @@ public class App extends AllDirectives {
 
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
-    private Flow<HttpRequest, HttpResponse, NotUsed> createRoute() {
-        return Flow.of(HttpRequest.class)
-                .map(this::parseReq);
 
-    }
-
-    public UrlWithCount parseReq (HttpRequest req) {
-        Query query = req.getUri().query();
-        Optional<String> testUrl = query.get("testUrl");
-        Optional<String> count = query.get("count");
-        return new UrlWithCount(testUrl.get(), Integer.parseInt(count.get()));
-    }
-
-    public CompletionStage<TestWithResult> 
 
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();

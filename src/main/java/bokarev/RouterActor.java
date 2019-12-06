@@ -1,11 +1,19 @@
 package bokarev;
 
+import akka.NotUsed;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.model.Query;
+import akka.stream.javadsl.Flow;
+
+import java.util.Optional;
+import java.util.concurrent.CompletionStage;
 
 
 public class RouterActor extends AbstractActor {
@@ -51,4 +59,26 @@ public class RouterActor extends AbstractActor {
 
                 .build();
     }
+
+
+
+
+    private Flow<HttpRequest, HttpResponse, NotUsed> createRoute() {
+        return Flow.of(HttpRequest.class)
+                .map(this::parseReq);
+
+    }
+
+    public UrlWithCount parseReq (HttpRequest req) {
+        Query query = req.getUri().query();
+        Optional<String> testUrl = query.get("testUrl");
+        Optional<String> count = query.get("count");
+        return new UrlWithCount(testUrl.get(), Integer.parseInt(count.get()));
+    }
+
+    public CompletionStage<TestWithResult> checkTestInStorage (UrlWithCount test) {
+        return Patter
+    }
+
+
 }

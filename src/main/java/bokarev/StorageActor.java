@@ -14,7 +14,7 @@ public class StorageActor extends AbstractActor {
 
     public StorageActor() {
         this.testResults = new HashMap<>();
-        testResults.put(new UrlWithCount("http://www.rambler.ru", 20), new Long(2));
+        testResults.put(new UrlWithCount("http://www.rambler.ru", new Integer(20)), new Long(2));
     }
 
     public static Props props() {

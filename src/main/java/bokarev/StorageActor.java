@@ -9,11 +9,9 @@ import java.util.*;
 
 public class StorageActor extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-
-    private Map<UrlWithCount, Long> testResults;
+    Map<UrlWithCount, Long> testResults = new HashMap<>();
 
     public StorageActor() {
-        this.testResults = new HashMap<>();
         testResults.put(new UrlWithCount("http://www.rambler.ru", new Integer(20)), new Long(2));
     }
 

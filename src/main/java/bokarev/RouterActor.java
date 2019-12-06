@@ -64,6 +64,7 @@ public class RouterActor {
                     if (r.isPresent()) {
                         return CompletableFuture.completedFuture(r.get());
                     } else {
+                        System.out.println("ASFDFDFDFDFD");
                         return runNewTest(test);
                     }
                 });

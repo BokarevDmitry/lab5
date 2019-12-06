@@ -1,22 +1,11 @@
 package bokarev;
 
-import akka.NotUsed;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.HttpResponse;
-import akka.pattern.Patterns;
-import akka.stream.javadsl.Flow;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import javafx.util.Pair;
-import scala.Tuple2;
-
-import java.util.concurrent.CompletionStage;
 
 
 public class RouterActor extends AbstractActor {
@@ -55,7 +44,7 @@ public class RouterActor extends AbstractActor {
                     //Sink<UrlWithCount, CompletionStage<Long>> testSink = Sink
 
                 })
-                .match(NoSuchTest.class, msg -> {
+                .match(TestWithResult.class, msg -> {
                     ActorRef testPasserActor = getContext().actorOf(TestPasserActor.props(), "TestPasser-Actor");
                     testPasserActor.tell(msg, getSender());
                 })

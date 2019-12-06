@@ -1,16 +1,14 @@
 package bokarev;
 
-public class NoSuchTest {
+public class TestWithResult {
     private String url;
-    private int count;
+    private Long result;
 
-    NoSuchTest(String url, int count) {
+    TestWithResult(String url, long result) {
         this.url = url;
-        this.count = count;
+        this.result = result;
     }
 
     public String getUrl() { return url; }
-    public int getCount() { return count; }
-
-
+    public long getResult() { return result; }
 }

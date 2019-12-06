@@ -60,7 +60,7 @@ public class App extends AllDirectives {
         return new UrlWithCount(testUrl.get(), Integer.parseInt(count.get()));
     }
 
-    public CompletionStage<>
+    public CompletionStage<TestWithResult> 
 
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();

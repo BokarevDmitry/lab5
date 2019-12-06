@@ -6,8 +6,6 @@ import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
-import javax.script.*;
-
 public class TestPasserActor extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
@@ -31,7 +29,7 @@ public class TestPasserActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(NoSuchTest.class, test -> {
+                .match(TestWithResult.class, test -> {
                     log.info("TEST IS DONE, RESULT: ");
                     getSender().tell(new TestToStore(test.getUrl(), 2.0), ActorRef.noSender());
                 })

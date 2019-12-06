@@ -35,7 +35,7 @@ public class StorageActor extends AbstractActor {
         return receiveBuilder()
                 .match(TestWithResult.class, test -> {
                         log.info("REQUEST: store test results of  - " + test.getUrl());
-                        this.testResults.put(test.getUrl(), test.getResult());
+                        testResults.put(test.getUrl(), test.getResult());
                 })
 
                 .match(UrlWithCount.class, r -> {

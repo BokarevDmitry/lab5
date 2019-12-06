@@ -60,6 +60,7 @@ public class RouterActor {
         return Patterns.ask(storageActor, test, Duration.ofMillis(5000))
                 .thenApply(t -> (TestWithResult)t)
                 .thenCompose(res -> {
+                    System.out.println("WAGANFDOSIFJOIFJEWFOIEFOIEJWOFJEWOFEWFEWFEWFEFEWF");
                     Optional<TestWithResult> r = res.getOptResult();
                     System.out.println("-----------------\n r ="+ r);
                     if (r.isPresent()) {

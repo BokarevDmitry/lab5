@@ -35,7 +35,7 @@ public class App extends AllDirectives {
 
         RouterActor router = new RouterActor(system, materializer, asyncHttpClient);
 
-        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
+        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 router.createRoute();
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,

@@ -98,7 +98,7 @@ public class RouterActor {
     public HttpResponse makeResponse (TestWithResult testResult) throws JsonProcessingException {
         storageActor.tell(testResult, ActorRef.noSender());
         return HttpResponse.create()
-                .withStatus()
+                .withStatus(StatusCodes.OK)
                 .withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(
                         new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(testResult)
                 ));

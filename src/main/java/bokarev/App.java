@@ -29,7 +29,7 @@ public class App extends AllDirectives {
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         App instance = new App();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute().flow(system, materializer);
+                instance.createRoute();
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
@@ -45,13 +45,15 @@ public class App extends AllDirectives {
 
     //AsyncHttpClient c = asyncHttpClient(config().setProxyServer(proxyServer("127.0.0.1", 38080)));
 
-    private Flow<HttpRequest, HttpRequest, NotUsed> createRoute() {
+    private Flow<HttpRequest, HttpResponse, NotUsed> createRoute() {
         return Flow.of(HttpRequest.class)
                 .map()
 
     }
 
-    private Url
+    private UrlWithCount parseReq (HttpRequest req) {
+        
+    }
 
                                         /*{
                                             AsyncHttpClient asyncHttpClient = asyncHttpClient();

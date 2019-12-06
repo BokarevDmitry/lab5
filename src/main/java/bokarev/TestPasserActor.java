@@ -31,7 +31,7 @@ public class TestPasserActor extends AbstractActor {
         return receiveBuilder()
                 .match(TestWithResult.class, test -> {
                     log.info("TEST IS DONE, RESULT: ");
-                    getSender().tell(new TestToStore(test.getUrl(), 2.0), ActorRef.noSender());
+                    //getSender().tell(new TestToStore(test.getUrl(), 2.0), ActorRef.noSender());
                 })
 
                 .build();
